@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
     this.loadTickets();
   }
 
+  username() {
+    return this.currentUser.first_name + ' ' + this.currentUser.last_name;
+  }
+
   private loadTickets() {
     this.ticketService.list().subscribe(tickets => { this.tickets = tickets; });
   }

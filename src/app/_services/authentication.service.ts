@@ -24,6 +24,7 @@ export class AuthenticationService {
       .map((response: Response) => {
         let user = response.json()['user'];
         if (user && user.token) {
+          user.email = email;
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
       });
@@ -37,11 +38,6 @@ export class AuthenticationService {
     if (localStorage.getItem('currentUser')) {
       this.loggedin = true;
     }
-  }
-
-  name() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser.first_name + ' ' + currentUser.last_name;
   }
 
   private headers() {
