@@ -28,8 +28,8 @@ export class TicketService {
     return this.http.delete('http://localhost:3000/tickets/' + id, this.headers()).map((response: Response) => response.json());
   }
 
-  loadAnswers(id: number) {
-    return this.http.get('http://localhost:3000/tickets/' + id + '/answers', this.headers()).map((response: Response) => response.json()['answers']);
+  show(id: number) {
+    return this.http.get('http://localhost:3000/tickets/' + id, this.headers()).map((response: Response) => response.json()['ticket']);
   }
 
   // private helper methods

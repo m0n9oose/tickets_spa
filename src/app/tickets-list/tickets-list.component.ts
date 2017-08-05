@@ -7,6 +7,7 @@ import { TicketService }      from '../_services/ticket.service';
 @Component({
   selector: 'tickets-list',
   templateUrl: 'tickets-list.component.html',
+  styleUrls: ['tickets-list.component.css']
 })
 
 export class TicketsListComponent implements OnInit {

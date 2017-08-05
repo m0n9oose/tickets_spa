@@ -1,6 +1,27 @@
-<h3 class="title">Ticket #{{id}}</h3>
-<ul class="list-unstyled">
-  <li *ngFor="let answer of answers">
-    {{answer.description}}
-  </li>
-</ul>
+<div class="col-md-8 col-md-offset-2">
+  <h3 class="title">Ticket #{{id}}</h3>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">{{ticket.subject}}</div>
+    <div class="panel-body">
+      <p>{{ticket.description}}</p>
+    </div>
+  </div>
+
+  <p><strong>Agent:</strong> {{ticket.agent || 'not assigned'}}</p>
+  <p><strong>Open:</strong> {{ticket.is_closed ? 'No' : 'Yes'}}</p>
+
+  <h2><small>Answers</small></h2>
+
+  <ul class="list-unstyled">
+    <li *ngFor="let answer of answers">
+      <div class="panel panel-default">
+        <div class="panel-heading">{{answer.author}}</div>
+        <div class="panel-body">
+          <p>{{answer.description}}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <button class="btn btn-default" routerLink="/tickets/{{id}}/answers/new">Post new answer</button>
+</div>

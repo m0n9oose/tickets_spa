@@ -5,6 +5,7 @@ import { Answer }             from '../_models/answer';
 import { User }               from '../_models/user';
 import { UserService }        from '../_services/user.service';
 import { TicketService }      from '../_services/ticket.service';
+import { AnswerService }      from '../_services/answer.service';
 
 @Component({
   templateUrl: 'ticket.component.html',
@@ -15,9 +16,11 @@ export class TicketComponent implements OnInit {
   id: number;
   private sub: any;
   answers: Answer[] = [];
+  ticket: Ticket;
 
   constructor(
     private ticketService: TicketService,
+    private answerService: AnswerService,
     private route: ActivatedRoute) {
   }
 
@@ -27,6 +30,7 @@ export class TicketComponent implements OnInit {
     // In a real app: dispatch action to load the details here.
     });
     this.loadAnswers();
+    this.loadTicket();
   }
 
   ngOnDestroy() {
@@ -34,6 +38,10 @@ export class TicketComponent implements OnInit {
   }
 
   private loadAnswers() {
-    this.ticketService.loadAnswers(this.id).subscribe(answers => { this.answers = answers; });
+    this.answerService.list(this.id).subscribe(answers => { this.answers = answers; });
+  }
+
+  private loadTicket() {
+    this.ticketService.show(this.id).subscribe(ticket => { this.ticket = ticket; });
   }
 }
