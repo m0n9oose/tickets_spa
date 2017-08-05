@@ -1,15 +1,13 @@
-<h3 class="title">Post new answer</h3>
-<form (ngSubmit)="submitAnswer()" class="form-horizontal" #f="ngForm" novalidate>
-  <div class="form-group">
-    <label for="answer_description" class="col-sm-2 control-label">Answer text</label>
-    <div class="col-sm-6">
+<div class="col-md-8 col-md-offset-2">
+  <h3 class="title">Post new answer</h3>
+  <form (ngSubmit)="submitAnswer()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="answer_description">Answer text</label>
       <textarea type="text" class="form-control" id="answer_description" name="description" [(ngModel)]="model.description" #description="ngModel" required></textarea>
     </div>
-  </div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-6">
+    <div class="form-group">
       <button type="submit" class="btn btn-default" [disabled]="!f.form.valid">Submit</button>
     </div>
-  </div>
-</form>
+  </form>
+</div>
