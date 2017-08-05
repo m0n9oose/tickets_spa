@@ -8,41 +8,22 @@ import {
 } from '@angular/http';
 
 import { AppComponent }           from './app.component';
-import { TicketsListComponent }   from './tickets-list.component';
-import { TicketComponent }        from './ticket.component';
-import { LoginComponent }         from './login.component';
-import { AlertComponent }         from './alert.component';
-import { PageNotFoundComponent }  from './page-not-found.component';
-import { Ticket }                 from './models/ticket';
-import { User }                   from './models/user';
-import { AuthGuard }              from './auth.guard';
-import { AlertService }           from './services/alert.service';
-import { AuthenticationService }  from './services/authentication.service';
-import { UserService }            from './services/user.service';
-import { TicketService }          from './services/ticket.service';
+import { routing }                from './app.routing';
 
-const appRoutes: Routes = [
-  {
-    path: 'tickets',
-    component: TicketsListComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'tickets/:id/answers',
-    component: TicketComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
-];
+import { TicketsListComponent }   from './tickets-list/tickets-list.component';
+import { TicketComponent }        from './ticket/ticket.component';
+import { NewTicketComponent }     from './new-ticket/new-ticket.component';
+import { LoginComponent }         from './login/login.component';
+import { AlertComponent }         from './alert/alert.component';
+import { PageNotFoundComponent }  from './page-not-found/page-not-found.component';
+import { Ticket }                 from './_models/ticket';
+import { User }                   from './_models/user';
+import { AuthGuard }              from './_guards/auth.guard';
+import { AlertService }           from './_services/alert.service';
+import { AuthenticationService }  from './_services/authentication.service';
+import { UserService }            from './_services/user.service';
+import { SubjectService }         from './_services/subject.service';
+import { TicketService }          from './_services/ticket.service';
 
 @NgModule({
   declarations: [
@@ -51,16 +32,14 @@ const appRoutes: Routes = [
     LoginComponent,
     TicketComponent,
     TicketsListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NewTicketComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    routing
   ],
   providers: [
     AuthGuard,
@@ -68,6 +47,7 @@ const appRoutes: Routes = [
     AuthenticationService,
     UserService,
     TicketService,
+    SubjectService,
     HttpModule,
     BaseRequestOptions
   ],

@@ -1,7 +1,0 @@
-<h1>Hi, {{currentUser.first_name}}</h1>
-<ul class="tickets">
-  <li *ngFor="let ticket of tickets"
-    (click)="onSelect(ticket)">
-    <span class="badge">{{ticket.id}}</span> {{ticket.description}}
-  </li>
-</ul>

@@ -1,4 +1,4 @@
-<form (ng-submit)="f.form.valid && login()" class="form-horizontal" #f="ngForm" novalidate>
+<form (ngSubmit)="login()" class="form-horizontal" #f="ngForm" novalidate>
   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
     <label for="user_email" class="col-sm-2 control-label">Email address</label>
     <div class="col-sm-6">

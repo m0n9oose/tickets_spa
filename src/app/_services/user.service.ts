@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map'
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { User } from '../models/user';
+import {
+  Http,
+  Headers,
+  RequestOptions,
+  Response
+} from '@angular/http';
+import 'rxjs/add/operator/map';
+import { User } from '../_models/user';
 
 @Injectable()
 export class UserService {

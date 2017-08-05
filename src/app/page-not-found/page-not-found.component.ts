@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `
-    <div>404</div>
-  `
+  template: '<p class="text-center">404</p>'
 })
 
 export class PageNotFoundComponent {

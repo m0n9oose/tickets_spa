@@ -1,0 +1,7 @@
+<h3 class="title">{{title}}</h3>
+<ul class="list-unstyled">
+  <li *ngFor="let ticket of tickets">
+    <span [ngClass]="{'glyphicon-unchecked': !ticket.is_closed, 'glyphicon-check': ticket.is_closed}" class="glyphicon"></span> {{ticket.description}}
+    <a routerLink="/tickets/{{ticket.id}}">open</a>
+  </li>
+</ul>

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Ticket }  from './models/ticket';
-import { User } from './models/user';
-import { UserService } from './services/user.service';
-import { TicketService } from './services/ticket.service';
+import { Component, OnInit }  from '@angular/core';
+import { Ticket }             from '../_models/ticket';
+import { User }               from '../_models/user';
+import { UserService }        from '../_services/user.service';
+import { TicketService }      from '../_services/ticket.service';
 
 @Component({
-  templateUrl: './views/tickets-list.component.html',
+  selector: 'tickets-list',
+  templateUrl: 'tickets-list.component.html',
 })
 
 export class TicketsListComponent implements OnInit {
   currentUser: User;
   tickets: Ticket[] = [];
+  title = "Tickets";
 
   constructor(private userService: UserService, private ticketService: TicketService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
