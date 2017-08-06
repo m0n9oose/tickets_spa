@@ -29,8 +29,8 @@ export class TicketComponent implements OnInit {
       this.id = + params['id']; // (+) converts string 'id' to a number
     // In a real app: dispatch action to load the details here.
     });
-    this.loadAnswers();
     this.loadTicket();
+    this.loadAnswers();
   }
 
   ngOnDestroy() {
@@ -52,9 +52,8 @@ export class TicketComponent implements OnInit {
   }
 
   private loadTicket() {
-
-    this.ticketService.show(this.id).subscribe(data => {
-      this.ticket = data;
+    this.ticketService.show(this.id).subscribe(ticket => {
+      this.ticket = ticket;
     });
   }
 }

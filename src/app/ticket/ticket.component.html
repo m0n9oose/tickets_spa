@@ -1,44 +1,46 @@
 <div class="col-md-8 col-md-offset-2">
   <h3 class="title">Ticket #{{id}}</h3>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">{{ticket.subject}}</div>
-    <div class="panel-body">
-      <p>{{ticket.description}}</p>
+  <div *ngIf="ticket">
+    <div class="panel panel-default">
+      <div class="panel-heading">{{ticket.subject}}</div>
+      <div class="panel-body">
+        <p>{{ticket.description}}</p>
+      </div>
     </div>
+    <p><strong>Agent:</strong> {{ticket.agent || 'not assigned'}}</p>
+    <p><strong>Open:</strong> {{ticket.is_closed ? 'No' : 'Yes'}}</p>
   </div>
 
-  <p><strong>Agent:</strong> {{ticket.agent || 'not assigned'}}</p>
-  <p><strong>Open:</strong> {{ticket.is_closed ? 'No' : 'Yes'}}</p>
+  <div *ngIf="answers.length > 0">
+    <h2><small>Answers</small></h2>
 
-  <h2><small>Answers</small></h2>
-
-  <ul class="list-unstyled">
-    <li *ngFor="let answer of answers">
-      <div class="panel panel-default">
-        <div class="panel-heading">{{answer.author}}</div>
-        <div class="panel-body">
-          <p>{{answer.description}}</p>
+    <ul class="list-unstyled">
+      <li *ngFor="let answer of answers">
+        <div class="panel panel-default">
+          <div class="panel-heading">{{answer.author}}</div>
+          <div class="panel-body">
+            <p>{{answer.description}}</p>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
-
-
-  <nav *ngIf="pagination" aria-label="...">
-    <ul class="pager">
-      <li class="previous" *ngIf="pagination.current_page > 1">
-        <a (click)="loadPage(pagination.current_page - 1)">
-          <span aria-hidden="true">&larr;</span> Older
-        </a>
-      </li>
-      <li class="next" *ngIf="pagination.current_page < pagination.total_pages">
-        <a (click)="loadPage(pagination.current_page + 1)">
-          Newer <span aria-hidden="true">&rarr;</span>
-        </a>
       </li>
     </ul>
-  </nav>
+
+    <nav *ngIf="pagination" aria-label="...">
+      <ul class="pager">
+        <li class="previous" *ngIf="pagination.current_page > 1">
+          <a (click)="loadPage(pagination.current_page - 1)">
+            <span aria-hidden="true">&larr;</span> Older
+          </a>
+        </li>
+        <li class="next" *ngIf="pagination.current_page < pagination.total_pages">
+          <a (click)="loadPage(pagination.current_page + 1)">
+            Newer <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <button
     *ngIf="pagination.current_page === pagination.total_pages"
