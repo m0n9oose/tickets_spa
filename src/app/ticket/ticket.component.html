@@ -23,5 +23,25 @@
       </div>
     </li>
   </ul>
-  <button class="btn btn-default" routerLink="/tickets/{{id}}/answers/new">Post new answer</button>
+
+
+  <nav *ngIf="pagination" aria-label="...">
+    <ul class="pager">
+      <li class="previous" *ngIf="pagination.current_page > 1">
+        <a (click)="loadPage(pagination.current_page - 1)">
+          <span aria-hidden="true">&larr;</span> Older
+        </a>
+      </li>
+      <li class="next" *ngIf="pagination.current_page < pagination.total_pages">
+        <a (click)="loadPage(pagination.current_page + 1)">
+          Newer <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <button
+    *ngIf="pagination.current_page === pagination.total_pages"
+    class="btn btn-default"
+    routerLink="/tickets/{{id}}/answers/new">Post new answer</button>
 </div>

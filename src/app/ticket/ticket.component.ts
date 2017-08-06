@@ -11,12 +11,12 @@ import { AnswerService }      from '../_services/answer.service';
   templateUrl: 'ticket.component.html',
 })
 
-
 export class TicketComponent implements OnInit {
   id: number;
   private sub: any;
   answers: Answer[] = [];
   ticket: Ticket;
+  pagination: any = {};
 
   constructor(
     private ticketService: TicketService,
@@ -37,11 +37,24 @@ export class TicketComponent implements OnInit {
     this.sub.unsubscribe();
   }
 
+  loadPage(page: number) {
+    this.answerService.list(this.id, page).subscribe(listing => {
+      this.answers = listing['answers'];
+      this.pagination = listing['pagination'];
+    });
+  }
+
   private loadAnswers() {
-    this.answerService.list(this.id).subscribe(answers => { this.answers = answers; });
+    this.answerService.list(this.id, 1).subscribe(listing => {
+      this.answers = listing['answers'];
+      this.pagination = listing['pagination'];
+    });
   }
 
   private loadTicket() {
-    this.ticketService.show(this.id).subscribe(ticket => { this.ticket = ticket; });
+
+    this.ticketService.show(this.id).subscribe(data => {
+      this.ticket = data;
+    });
   }
 }

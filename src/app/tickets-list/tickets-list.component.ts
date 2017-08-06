@@ -12,18 +12,30 @@ import { TicketService }      from '../_services/ticket.service';
 
 export class TicketsListComponent implements OnInit {
   currentUser: User;
+  pagination: any = {};
   tickets: Ticket[] = [];
-  title = "Tickets";
 
-  constructor(private userService: UserService, private ticketService: TicketService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  }
+  constructor(
+    private userService: UserService,
+    private ticketService: TicketService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
   ngOnInit() {
     this.loadAllTickets();
   }
 
+  loadPage(page: number) {
+    this.ticketService.list(page).subscribe(listing => {
+      this.tickets = listing['tickets'];
+      this.pagination = listing['pagination'];
+    });
+  }
+
   private loadAllTickets() {
-    this.ticketService.list().subscribe(tickets => { this.tickets = tickets; });
+    this.ticketService.list(1).subscribe(listing => {
+      this.tickets = listing['tickets'];
+      this.pagination = listing['pagination'];
+    });
   }
 }

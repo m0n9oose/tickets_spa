@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-  <h3 class="title">{{title}}</h3>
+  <h3 class="title">Tickets</h3>
   <ul class="list-unstyled">
     <li *ngFor="let ticket of tickets">
       <div class="panel panel-default" [ngClass]="{'ticket-closed': ticket.is_closed}">
@@ -11,4 +11,15 @@
       </div>
     </li>
   </ul>
+
+  <nav *ngIf="pagination" aria-label="...">
+    <ul class="pager">
+      <li class="previous" *ngIf="pagination.current_page > 1">
+        <a (click)="loadPage(pagination.current_page - 1)"><span aria-hidden="true">&larr;</span> Older</a>
+      </li>
+      <li class="next" *ngIf="pagination.current_page < pagination.total_pages">
+        <a (click)="loadPage(pagination.current_page + 1)">Newer <span aria-hidden="true">&rarr;</span></a>
+      </li>
+    </ul>
+  </nav>
 </div>

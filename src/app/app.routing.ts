@@ -35,10 +35,6 @@ const appRoutes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'sign_out',
-    component: LoginComponent,
-  },
-  {
     path: '',
     redirectTo: 'tickets',
     pathMatch: 'full'
