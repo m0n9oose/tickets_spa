@@ -7,15 +7,16 @@
       </button>
       <span class="navbar-brand">Support</span>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
+    <div *ngIf="loggedIn()" id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a routerLink="/tickets">Tickets list</a></li>
         <li><a routerLink="/tickets/new">Create new ticket</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href='account'>{{username()}}</a></li>
+        <li><a>{{username()}}</a></li>
+        <li><a routerLink='/sign_in'>Logout</a></li>
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>
 

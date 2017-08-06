@@ -1,10 +1,6 @@
-import { Component, OnInit }      from '@angular/core';
-
+import { Component }              from '@angular/core';
 import { AuthenticationService }  from './_services/authentication.service'
-import { TicketService }          from './_services/ticket.service'
-
 import { User }                   from './_models/user'
-import { Ticket }                 from './_models/ticket'
 
 @Component({
   selector: 'app-root',
@@ -12,26 +8,22 @@ import { Ticket }                 from './_models/ticket'
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-  title = 'AppComponent Title';
+export class AppComponent {
   currentUser: User;
-  tickets: Ticket[] = [];
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private ticketService: TicketService) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser') || "{}");
-    }
-
-  ngOnInit() {
-    this.loadTickets();
+  constructor(private authenticationService: AuthenticationService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || "{}");
   }
 
   username() {
     return this.currentUser.first_name + ' ' + this.currentUser.last_name;
   }
 
-  private loadTickets() {
-    this.ticketService.list().subscribe(tickets => { this.tickets = tickets; });
+  loggedIn() {
+    if (localStorage.getItem('currentUser')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -31,7 +31,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'login',
+    path: 'sign_in',
+    component: LoginComponent,
+  },
+  {
+    path: 'sign_out',
     component: LoginComponent,
   },
   {
